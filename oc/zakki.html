@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>オカルト雑記帳 - うえむらのページ</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ★ 意図的に別サイト感を出すためデザインを変える ★
+   こちらは白背景・紺テキスト系の「少し古い感じ」のサイト */
+body {
+  background-color: #eeeedd;
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 19px, #ddddc8 19px, #ddddc8 20px
+  );
+  color: #222233;
+  font-family: "ＭＳ 明朝", "MS Mincho", serif;
+  font-size: 13px;
+  line-height: 1.95;
+}
+
+#wrapper { max-width: 650px; margin: 0 auto; background: #f5f5e8; border-left: 2px solid #aaaacc; border-right: 2px solid #aaaacc; padding: 0 0 20px; }
+
+/* マーキー */
+.marquee-bar {
+  background: #333366;
+  padding: 3px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-bar span {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+  font-size: 11px;
+  color: #ffff99;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  letter-spacing: 1px;
+}
+@keyframes scroll { 0% { transform: translateX(650px); } 100% { transform: translateX(-100%); } }
+
+/* ヘッダー */
+#header {
+  background: #222244;
+  padding: 12px 16px 10px;
+  border-bottom: 3px solid #6666cc;
+  text-align: center;
+}
+.site-title {
+  font-size: 24px;
+  color: #ffff88;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px #000033;
+}
+.site-sub {
+  font-size: 11px;
+  color: #aaaacc;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  font-family: "ＭＳ ゴシック", sans-serif;
+}
+
+/* ナビ */
+#nav {
+  background: #333366;
+  padding: 4px 10px;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  font-size: 11px;
+}
+#nav a { color: #ccccff; text-decoration: none; margin-right: 12px; }
+#nav a:hover { color: #ffff99; text-decoration: underline; }
+
+/* レイアウト */
+#layout { display: table; width: 100%; padding: 10px; }
+#main   { display: table-cell; vertical-align: top; width: 430px; padding-right: 12px; }
+#sidebar{ display: table-cell; vertical-align: top; width: 170px; }
+
+/* 記事 */
+.article { margin-bottom: 18px; border-bottom: 1px dashed #aaaacc; padding-bottom: 14px; }
+.article:last-child { border-bottom: none; }
+.article-date {
+  font-size: 10px;
+  color: #666688;
+  font-family: "Courier New", monospace;
+  margin-bottom: 3px;
+}
+.article-title {
+  font-size: 15px;
+  color: #222266;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  margin-bottom: 6px;
+  border-left: 3px solid #6666cc;
+  padding-left: 6px;
+}
+.article-body { color: #333344; line-height: 2.0; }
+.article-body p { margin-bottom: 8px; }
+.article-body p:last-child { margin-bottom: 0; }
+.article-body a { color: #336699; }
+.article-body a.dead { color: #999999; text-decoration: line-through; }
+
+/* ハイライト */
+.hl { color: #333399; font-weight: bold; }
+.hl-red { color: #993333; }
+.note {
+  background: #eeeecc;
+  border: 1px solid #cccc99;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #666655;
+  margin: 8px 0;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  line-height: 1.8;
+}
+
+/* サイドバー */
+.side-box { border: 1px solid #aaaacc; background: #eeeeee; margin-bottom: 10px; }
+.side-box-title {
+  background: #333366;
+  color: #ffff99;
+  font-size: 11px;
+  font-family: "ＭＳ ゴシック", sans-serif;
+  padding: 3px 8px;
+  letter-spacing: 1px;
+}
+.side-box-body { padding: 6px 8px; font-size: 11px; }
+.side-link { display: block; color: #336699; text-decoration: none; font-family: "ＭＳ ゴシック", sans-serif; font-size: 11px; padding: 1px 0; border-bottom: 1px dotted #cccccc; }
+.side-link:hover { color: #cc3333; text-decoration: underline; }
+.side-link:last-child { border-bottom: none; }
+.side-link.dead { color: #999999; text-decoration: line-through; cursor: default; }
+
+/* カウンター */
+.counter {
+  text-align: center;
+  background: #222244;
+  border: 1px solid #6666cc;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+.counter-num { font-size: 18px; font-family: "Courier New", monospace; color: #ffff66; display: block; letter-spacing: 3px; }
+.counter-label { font-size: 9px; color: #6666cc; font-family: "Courier New", monospace; }
+
+/* フッター */
+#footer {
+  background: #222244;
+  text-align: center;
+  padding: 8px;
+  font-size: 10px;
+  color: #6666cc;
+  font-family: "Courier New", monospace;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <div class="marquee-bar"><span>★ うえむらのオカルト雑記帳 ★ &nbsp;&nbsp;&nbsp; ようこそいらっしゃいました！ &nbsp;&nbsp;&nbsp; ★ 最終更新 2000/02/14 ★ &nbsp;&nbsp;&nbsp; ご意見・感想はメールで ★ &nbsp;&nbsp;&nbsp;</span></div>
+
+  <div id="header">
+    <div class="site-title">うえむらのオカルト雑記帳</div>
+    <div class="site-sub">〜 気になったこと・調べたことを書き留めていきます 〜</div>
+  </div>
+
+  <div id="nav">
+    <a href="#">トップ</a>
+    <a href="#">日記</a>
+    <a href="#">オカルト考察</a>
+    <a href="#">掲示板</a>
+    <a href="#">リンク</a>
+    <a href="#">プロフ</a>
+  </div>
+
+  <div id="layout">
+    <div id="main">
+
+      <div class="article">
+        <div class="article-date">2000/02/14</div>
+        <div class="article-title">最近ネットで見つけた面白いサイト</div>
+        <div class="article-body">
+          <p>
+            久しぶりに更新します。最近バタバタしていて全然書けていなかった。
+          </p>
+          <p>
+            <a href="template_01_kamikakushi.html">「神隠し伝承まとめ」</a>というサイトを見つけました。管理人の「タカヤ」さんという方がやっているサイトで、神隠しの事例をTYPE-A〜Cに分類して整理している。特にTYPE-C（<span class="hl">「記憶ごと消える」タイプ</span>）の考察が面白かった。
+          </p>
+          <p>
+            あと同サイトの掲示板で「<span class="hl">ツキシマ</span>」という人物への言及があって、これが気になった。似たような名前を自分も以前どこかで見た気がするんだけど、どこで見たかが思い出せない。
+          </p>
+          <p class="hl-red">
+            ……こういう「見たことがある気がするのに思い出せない」感覚って、今思えば怖いな。
+          </p>
+        </div>
+      </div>
+
+      <div class="article">
+        <div class="article-date">2000/01/08</div>
+        <div class="article-title">カセットテープの話</div>
+        <div class="article-body">
+          <p>
+            あけましておめでとうございます（遅い）。
+          </p>
+          <p>
+            年末に実家に帰ったら、物置から古いカセットテープがたくさん出てきた。ほとんどは音楽の録音だったけど、１本だけ、誰が録音したかわからないテープがあった。
+          </p>
+          <p>
+            再生してみたら、若い男の人の声が入っていた。何かについて話しているようなんだけど、音質が悪くてよく聞き取れない。ところどころ「梨の木」という言葉と、何かの手順みたいなものを説明している声が聞こえた。
+          </p>
+          <p>
+            家族に聞いたら誰もそのテープに心当たりがないという。どこから来たものかも不明。<br>
+            <span class="hl">なんとなく捨てられなくて、持って帰ってきてしまった。</span>
+          </p>
+          <div class="note">
+            ※後日談：結局誰の声かわかっていません。テープはまだ手元にあります。
+          </div>
+        </div>
+      </div>
+
+      <div class="article">
+        <div class="article-date">1999/11/20</div>
+        <div class="article-title">消えた個人サイトについて</div>
+        <div class="article-body">
+          <p>
+            以前リンク集に載せていたサイトで、<span class="hl">カセットテープで音を録音することへの異常なこだわりを持つ人の個人ページ</span>があった。1985年頃の話が中心で、当時のオカルトサークルの活動記録みたいな内容だったんだけど——
+          </p>
+          <p>
+            気づいたらなくなっていた。
+          </p>
+          <p>
+            サイト名もURLもメモしていなかったのが悔やまれる。管理人の名前も覚えていない。ただ「桃」という字が入っていた気がする。
+          </p>
+          <p class="hl-red">
+            Googleで探しても出てこない。最初からなかったのか、消えたのか、わからない。
+          </p>
+          <div class="note">
+            ※知っている方がいたら教えてください。1998〜1999年頃には確実に存在していました。
+          </div>
+        </div>
+      </div>
+
+      <div class="article">
+        <div class="article-date">1999/10/03</div>
+        <div class="article-title">異界駅の話あれこれ</div>
+        <div class="article-body">
+          <p>
+            異界駅の都市伝説が最近ネットで流行っているので、自分なりに調べてみた。
+          </p>
+          <p>
+            「夜中に電車に乗っていると、実在しない駅に停まることがある」「降りてしまうと戻れない」という話。これ、神隠し伝承まとめのTYPE-C分類でいう「消えた村」系の話と構造が同じだと思う。
+          </p>
+          <p>
+            建物は実在するのに、人だけがいない。<br>
+            あるいは、存在していたものが——<span class="hl">更新されないまま</span>残っている。<br>
+            そういう感じ。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="sidebar">
+      <div class="counter">
+        <span class="counter-label">YOU ARE NO.</span>
+        <span class="counter-num">003114</span>
+        <span class="counter-label">since 1999.04.01</span>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">メニュー</div>
+        <div class="side-box-body">
+          <a class="side-link" href="#">トップ</a>
+          <a class="side-link" href="#">日記</a>
+          <a class="side-link" href="#">オカルト考察</a>
+          <a class="side-link" href="#">掲示板</a>
+          <a class="side-link" href="#">プロフィール</a>
+          <a class="side-link" href="#">リンク集</a>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">おすすめリンク</div>
+        <div class="side-box-body">
+          <a class="side-link" href="kamikakushi.html">神隠し伝承まとめ</a>
+          <a class="side-link" href="#">都市伝説BBS（外部）</a>
+          <a class="side-link" href="#">異界駅まとめ</a>
+          <a class="side-link dead" href="#">桃○の部屋（リンク切れ）</a>
+          <a class="side-link" href="#">民俗学的考察アーカイブ</a>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">最近の日記</div>
+        <div class="side-box-body" style="font-size:11px; color:#555566; line-height:2.0;">
+          2000/02/14 更新<br>
+          2000/01/08 更新<br>
+          1999/11/20 更新<br>
+          1999/10/03 更新<br>
+          1999/09/11 更新<br>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <div class="side-box-title">管理人より</div>
+        <div class="side-box-body" style="font-size:11px; color:#555566; line-height:1.9;">
+          うえむら。<br>
+          社会人2年目。<br>
+          オカルト好き。<br><br>
+          実家のテープの件、<br>
+          誰か知っていたら<br>
+          教えてください。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer">
+    うえむらのオカルト雑記帳<br>
+    since 1999.04 &nbsp;|&nbsp; Last Update: 2000/02/14<br>
+    Copyright © 1999-2000 うえむら
+  </div>
+</div>
+</body>
+</html>

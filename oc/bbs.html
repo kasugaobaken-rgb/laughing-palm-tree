@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>目撃情報掲示板 過去ログ - 神隠し伝承まとめ</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background-color: #0a0a0a;
+  background-image: radial-gradient(1px 1px at 15% 25%, #334 0%, transparent 100%), radial-gradient(1px 1px at 75% 60%, #334 0%, transparent 100%);
+  background-size: 150px 150px;
+  color: #ccccaa;
+  font-family: "ＭＳ 明朝", "MS Mincho", serif;
+  font-size: 13px;
+  line-height: 1.9;
+}
+#wrapper { max-width: 700px; margin: 0 auto; padding: 8px; }
+.marquee-bar { background: #111100; border-top: 1px solid #554400; border-bottom: 1px solid #554400; padding: 3px 0; overflow: hidden; white-space: nowrap; margin-bottom: 10px; }
+.marquee-bar span { display: inline-block; animation: scroll 28s linear infinite; font-size: 11px; color: #887744; font-family: "ＭＳ ゴシック", sans-serif; }
+@keyframes scroll { 0% { transform: translateX(700px); } 100% { transform: translateX(-100%); } }
+#header { border: 1px solid #443322; background: #0f0e08; padding: 14px 16px 10px; margin-bottom: 10px; position: relative; }
+#header::before { content: ""; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px; border: 1px dashed #332211; pointer-events: none; }
+.site-name { font-size: 22px; color: #ccaa55; letter-spacing: 4px; text-shadow: 0 0 12px #443300; margin-bottom: 4px; }
+.page-sub { font-size: 12px; color: #665533; letter-spacing: 2px; font-family: "ＭＳ ゴシック", sans-serif; }
+.breadcrumb { font-size: 11px; color: #443322; font-family: "Courier New", monospace; margin-top: 6px; }
+.breadcrumb a { color: #554433; }
+#layout { display: table; width: 100%; border-spacing: 8px; }
+#main { display: table-cell; vertical-align: top; width: 490px; }
+#sidebar { display: table-cell; vertical-align: top; width: 185px; }
+.box { border: 1px solid #332211; background: #0d0c08; margin-bottom: 10px; }
+.box-title { background: #1a1505; border-bottom: 1px solid #332211; padding: 4px 10px; font-size: 11px; color: #887744; font-family: "ＭＳ ゴシック", sans-serif; letter-spacing: 2px; }
+.box-title::before { content: "◆ "; color: #554422; }
+.box-body { padding: 10px 12px; color: #aaa888; font-size: 12px; }
+
+/* BBS スタイル */
+.bbs-header { border: 1px solid #332211; background: #110f05; padding: 8px 12px; margin-bottom: 10px; font-size: 11px; color: #554422; font-family: "Courier New", monospace; }
+.bbs-note { background: #0d0c08; border: 1px solid #2a1f0a; padding: 8px 12px; margin-bottom: 10px; font-size: 11px; color: #665533; line-height: 1.8; }
+.post { border: 1px solid #2a1f0a; background: #0d0c08; margin-bottom: 8px; }
+.post-head { background: #110f05; border-bottom: 1px solid #1a1505; padding: 5px 10px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+.post-num { font-size: 11px; color: #665533; font-family: "Courier New", monospace; }
+.post-name { font-size: 12px; color: #ccaa55; font-family: "ＭＳ ゴシック", sans-serif; }
+.post-name.anon { color: #887744; }
+.post-name.deleted { color: #443322; font-style: italic; }
+.post-date { font-size: 10px; color: #443322; font-family: "Courier New", monospace; }
+.post-body { padding: 8px 12px; color: #aaa888; font-size: 12px; line-height: 1.9; }
+.post-body.deleted { color: #332211; font-style: italic; }
+.post-body p { margin-bottom: 6px; }
+.post-body p:last-child { margin-bottom: 0; }
+.reply { border: 1px solid #1a1505; background: #080700; margin: 6px 12px 8px 24px; }
+.reply .post-head { background: #0a0900; }
+.hl { color: #ccaa55; }
+.hl-dim { color: #665533; font-style: italic; }
+.hl-red { color: #aa6644; }
+.blink { animation: blink 1.2s step-end infinite; color: #886633; }
+@keyframes blink { 0%,100%{visibility:visible;} 50%{visibility:hidden;} }
+.thread-title { font-size: 13px; color: #ccaa55; font-family: "ＭＳ ゴシック", sans-serif; background: #1a1505; border: 1px solid #332211; padding: 5px 10px; margin-bottom: 6px; letter-spacing: 1px; }
+.thread-sep { border: none; border-top: 2px solid #1a1505; margin: 16px 0; }
+.side-link { display: block; color: #887744; text-decoration: none; font-size: 11px; font-family: "ＭＳ ゴシック", sans-serif; padding: 2px 0; border-bottom: 1px dotted #2a1f0a; }
+.side-link:hover { color: #ccaa55; }
+.side-link:last-child { border-bottom: none; }
+.counter { text-align: center; background: #000500; border: 1px solid #004400; padding: 6px; margin-bottom: 8px; }
+.counter-num { font-size: 20px; font-family: "Courier New", monospace; color: #00aa44; text-shadow: 0 0 6px #00aa44; display: block; letter-spacing: 4px; }
+.counter-label { font-size: 9px; color: #004422; font-family: "Courier New", monospace; }
+#footer { text-align: center; border-top: 1px solid #2a1f0a; padding: 10px; font-size: 10px; color: #443322; font-family: "Courier New", monospace; }
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <div class="marquee-bar"><span>★ 神隠し伝承まとめ ★ &nbsp;&nbsp;&nbsp; 目撃情報掲示板 過去ログ &nbsp;&nbsp;&nbsp; ★ 現在も書き込み受付中 ★ &nbsp;&nbsp;&nbsp;</span></div>
+  <div id="header">
+    <div class="site-name">神 隠 し 伝 承 ま と め</div>
+    <div class="page-sub">〜 目撃情報掲示板 過去ログ 〜</div>
+    <div class="breadcrumb"><a href="template_01_kamikakushi.html">トップ</a> &gt; 目撃情報掲示板</div>
+  </div>
+
+  <div id="layout">
+    <div id="main">
+
+      <div class="bbs-header">
+        目撃情報掲示板 過去ログ｜1998年4月〜1999年10月<br>
+        全スレッド数：47　うち表示：主要スレッドのみ（管理人選抜）
+      </div>
+
+      <div class="bbs-note">
+        ※ 荒らし・無関係な書き込みは削除しています。<br>
+        ※ 個人情報と判断できる記述は伏字にしています。<br>
+        ※ <span class="hl">特に気になる書き込みには管理人コメントを付けています。</span>
+      </div>
+
+      <!-- スレッド1 -->
+      <div class="thread-title">スレッド #003「TYPE-Cの体験談を聞かせてください」</div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[1]</span>
+          <span class="post-name">タカヤ（管理人）</span>
+          <span class="post-date">1998/05/12 22:14</span>
+        </div>
+        <div class="post-body">
+          <p>TYPE-C——記憶ごと消えるタイプの神隠しについての体験談や目撃情報を募集します。「あの人はどこへ行ったのか」ではなく「あの人が最初からいなかったことにされている」という感覚を持った方、ぜひ書き込んでください。</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[2]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1998/05/14 01:33</span>
+        </div>
+        <div class="post-body">
+          <p>祖父の兄弟が一人、親族の記憶から消えていたという話を祖母から聞きました。戸籍には名前があるのに、みんな「そんな人はいなかった」と言う。祖母だけが覚えていて、晩年ずっと気にしていたそうです。</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[3]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1998/06/02 03:17</span>
+        </div>
+        <div class="post-body">
+          <p>大学のゼミで一緒だった人間が、ある日から誰にも覚えられていなかったことがあります。僕だけが「あいつはいた」と思っていて、写真を見せようとしたら、その人だけピントがぼけていた。カメラの不具合だと言われたけど、それ以前の写真では普通に写っていたのに。</p>
+        </div>
+      </div>
+
+      <div class="post reply">
+        <div class="post-head">
+          <span class="post-num">└[管理人より]</span>
+          <span class="post-name">タカヤ</span>
+          <span class="post-date">1998/06/03 22:50</span>
+        </div>
+        <div class="post-body">
+          <p>「写真だけピントがぼけていた」というのは初めて聞くパターンです。物的証拠が「曖昧化」されるケースとして記録しておきます。もしよければ詳しく教えていただけますか？</p>
+        </div>
+      </div>
+
+      <hr class="thread-sep">
+
+      <!-- スレッド2：ツキシマ言及スレッド -->
+      <div class="thread-title">スレッド #011「オカルトに詳しい人物を探しています」</div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[1]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1998/09/08 00:41</span>
+        </div>
+        <div class="post-body">
+          <p>以前、父の話で気になっていることがあり書き込みます。父が若い頃（1980年代）、バーで偶然知り合った人物から「異界への入り方」を聞いたというのです。その人物は「<span class="hl">ツキシマ</span>」と名乗っていたとか。</p>
+          <p>父はその話を本気にしていなかったようで詳細は忘れてしまいましたが、「梨の木を使う」ということだけは覚えていると言っていました。その人物について何か知っている方はいませんか？</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[2]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1998/09/09 14:22</span>
+        </div>
+        <div class="post-body">
+          <p>ツキシマという名前、どこかで聞いたことがある気がします。でも誰から聞いたのか思い出せない……。気のせいかもしれません。</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[3]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1998/09/11 23:55</span>
+        </div>
+        <div class="post-body">
+          <p>私の知り合いも似たような人物から話を聞いたと言っていました。1990年代初頭のことだそうです。「今も同じバーにいる」という話でしたが、確認しに行ったら、そのバー自体が閉店していて……</p>
+          <p class="hl-dim">あまり深く調べない方がいいような気がして、それ以上は追いませんでした。</p>
+        </div>
+      </div>
+
+      <div class="post reply">
+        <div class="post-head">
+          <span class="post-num">└[管理人より]</span>
+          <span class="post-name">タカヤ</span>
+          <span class="post-date">1998/09/13 21:18</span>
+        </div>
+        <div class="post-body">
+          <p>「ツキシマ」という人物については、このサイトへの問い合わせで過去に2件言及がありました。どちらも「1980〜90年代に都市部のバーで出会った」という点で共通しています。<span class="hl">梨の木との関連も含め、引き続き情報を集めます。</span></p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[4]</span>
+          <span class="post-name deleted">（この書き込みは削除されました）</span>
+          <span class="post-date">1998/09/15 02:07</span>
+        </div>
+        <div class="post-body deleted">
+          この書き込みは投稿者本人の申請により削除されました。
+        </div>
+      </div>
+
+      <div class="post reply">
+        <div class="post-head">
+          <span class="post-num">└[管理人より]</span>
+          <span class="post-name">タカヤ</span>
+          <span class="post-date">1998/09/15 22:40</span>
+        </div>
+        <div class="post-body" style="color:#665533; font-size:11px;">
+          ※ [4]の投稿者より「やはり書かない方がいい気がした」という申請があり削除しました。<span class="blink">★</span>
+          内容は「1985年頃に知人が体験した話」に関するものでしたが、詳細は伏せます。
+        </div>
+      </div>
+
+      <hr class="thread-sep">
+
+      <!-- スレッド3 -->
+      <div class="thread-title">スレッド #023「声だけ残るということについて」</div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[1]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1999/03/22 01:11</span>
+        </div>
+        <div class="post-body">
+          <p>ふと思ったんですが、TYPE-Cで「記憶ごと消える」場合でも、<span class="hl">録音された声だけは消えないことがある</span>という事例はないですか？写真や文書は消えるのに、声の記録だけが残るというような。</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[2]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1999/03/24 22:48</span>
+        </div>
+        <div class="post-body">
+          <p>それに近い話を聞いたことがあります。誰が録音したのかも、誰の声なのかもわからないカセットテープが出てきた、という話を。再生すると知らない人の声が入っていて、でも声を聞くと「どこかで聞いたことがある」感じがする——という。</p>
+          <p class="hl-dim">その話をしてくれた人も、詳しいことは言いたくなさそうでした。</p>
+        </div>
+      </div>
+
+      <div class="post reply">
+        <div class="post-head">
+          <span class="post-num">└[管理人より]</span>
+          <span class="post-name">タカヤ</span>
+          <span class="post-date">1999/03/25 23:10</span>
+        </div>
+        <div class="post-body">
+          <p>「声だけが残る」事例は、管理人も気になっているテーマです。民俗学的には、声は魂の一部とされることがある。<span class="hl">もし存在そのものが消えかけていても、録音された声が残っていれば——その存在は完全には消えない</span>のかもしれません。CASE-022として別途まとめる予定です。</p>
+        </div>
+      </div>
+
+      <hr class="thread-sep">
+
+      <!-- スレッド4：軽い日常系でバランス取る -->
+      <div class="thread-title">スレッド #031「近所の神社で変なことがありました」</div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[1]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1999/07/14 20:03</span>
+        </div>
+        <div class="post-body">
+          <p>神隠しとは少し違うかもしれませんが、近所の神社の裏手に梨の木があって、その木の前だけ妙に空気が違う感じがします。怖いというより、なんか「ここは入ったらいけない」という感じ。気のせいですかね。</p>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <span class="post-num">[2]</span>
+          <span class="post-name anon">名無しさん</span>
+          <span class="post-date">1999/07/15 12:30</span>
+        </div>
+        <div class="post-body">
+          <p>気のせいじゃないと思います。このサイトの梨の木のページを読んで、うちの近くにも似たような木があることに気づきました。</p>
+        </div>
+      </div>
+
+      <div class="post reply">
+        <div class="post-head">
+          <span class="post-num">└[管理人より]</span>
+          <span class="post-name">タカヤ</span>
+          <span class="post-date">1999/07/16 23:55</span>
+        </div>
+        <div class="post-body">
+          <p>場所を教えていただけますか？CASE-017との関連を調べているところなので。</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="sidebar">
+      <div class="counter">
+        <span class="counter-label">VISITOR</span>
+        <span class="counter-num">007823</span>
+        <span class="counter-label">since 1998.04.01</span>
+      </div>
+      <div class="box">
+        <div class="box-title">メニュー</div>
+        <div class="box-body" style="padding:6px 10px;">
+          <a class="side-link" href="https://bucolic-sopapillas-6a988.netlify.app">▶ トップ</a>
+          <a class="side-link" href="cases.html">▶ 収集事例一覧</a>
+          <a class="side-link" href="nashiki.html">▶ 梨の木と境界の話</a>
+          <a class="side-link" href="kamikakushi.html">▶ 民俗学的考察</a>
+          <a class="side-link" href="bbs.html">▶ 目撃情報掲示板</a>
+          <a class="side-link" href="#">▶ 参考文献</a>
+          <a class="side-link" href="#">▶ リンク集</a>
+          <a class="side-link" href="#">▶ 管理人について</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-title">注目スレッド</div>
+        <div class="box-body" style="padding:6px 10px; font-size:11px;">
+          <a class="side-link" href="#">▶ #011 ツキシマという人物</a>
+          <a class="side-link" href="#">▶ #023 声だけが残る話</a>
+          <a class="side-link" href="#">▶ #003 TYPE-C体験談</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-title">管理人より</div>
+        <div class="box-body" style="font-size:11px; color:#665533; line-height:1.9;">
+          スレッド#011の<br>
+          削除された[4]が<br>
+          ずっと気になっています。<br><br>
+          <span class="blink">★</span>投稿者の方、<br>
+          よければ個別に<br>
+          連絡ください。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    神隠し伝承まとめ 〜消えた者たちの記録〜<br>
+    管理人：タカヤ<br>
+    <span style="font-size:9px;">Last Update: 1999/10/19 &nbsp;|&nbsp; Copyright © 1998-1999 タカヤ</span>
+  </div>
+</div>
+</body>
+</html>
