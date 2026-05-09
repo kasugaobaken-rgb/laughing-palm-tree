@@ -226,7 +226,45 @@ body {
   color: #443322;
   font-family: "Courier New", monospace;
 }
-</style>
+
+
+/* ARG evidence controls */
+.evidence-btn {
+  margin: 12px 0 4px;
+  padding: 8px 12px;
+  border: 1px solid #8b6b36;
+  background: #fff7d0;
+  color: #4a3212;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #c9b27a;
+}
+.evidence-btn:hover { background:#fff0a8; }
+.mogami-return {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  display: inline-block;
+  padding: 10px 13px;
+  background: #2b2114;
+  color: #fff4d8 !important;
+  border: 2px solid #b59248;
+  text-decoration: none;
+  font-size: 12px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+}
+.arg-toast {
+  position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%);
+  background: #2b2114; color:#fff4d8; border:1px solid #b59248;
+  padding: 10px 14px; z-index: 10000; font-size: 12px;
+  opacity: 0; pointer-events:none; transition: opacity .2s ease;
+}
+.arg-toast.show { opacity: 1; }
+@media (max-width: 480px){ .mogami-return{right:10px;bottom:10px;font-size:11px;padding:9px 10px;} }
+
+  </style>
 </head>
 <body>
 <div id="wrapper">
@@ -283,7 +321,7 @@ body {
       </div>
 
       <!-- 神隠しの類型 -->
-      <div class="article">
+      <div class="article" id="types">
         <div class="article-head">
           <div class="article-date">1999.06.11 更新</div>
           <div class="article-title">神隠しの類型について</div>
@@ -292,6 +330,7 @@ body {
           <p>
             収集した事例を整理すると、神隠しにはいくつかのパターンがあります。
           </p>
+          <button class="evidence-btn" onclick="saveKamikakushiEvidence('kamikakushi_types')">この記述を調査メモに保存</button>
 
           <hr class="hr-single">
 
@@ -301,6 +340,18 @@ body {
             <div class="case-body">
               本人の痕跡（持ち物・写真・書類）は残るが、本人だけが消える。
               周囲は「失踪した」と認識し、捜索が行われる。もっとも一般的な形。
+            </div>
+          </div>
+
+          <div class="case-item">
+            <div class="case-label">TYPE-A-2</div>
+            <div class="case-title">帰還する神隠し型</div>
+            <div class="case-body">
+              天狗に攫われた、山の神に連れて行かれた、遠い土地を巡ってきた、という形で語られるもの。
+              消えた者が数日後、あるいは数年後に戻る場合がある。戻った者は、通常では知り得ない土地や出来事を語ることがある。
+              近世の記録では「天狗攫い」と呼ばれることも多い。
+              <br><br>
+              <button class="evidence-btn" onclick="saveKamikakushiEvidence('tengu_return')">この記述を調査メモに保存</button>
             </div>
           </div>
 
@@ -324,13 +375,15 @@ body {
               当事者の近しい人間の一部だけが違和感を覚えるが、
               証明できないために孤立する。<br><br>
               このサイトで最も重点的に扱う事例です。
+              <br><br>
+              <button class="evidence-btn" onclick="saveKamikakushiEvidence('trace_disappear')">この記述を調査メモに保存</button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 収集事例 -->
-      <div class="article">
+      <div class="article" id="cases">
         <div class="article-head">
           <div class="article-date">1999.09.02 更新</div>
           <div class="article-title">各地の収集事例（TYPE-C中心）</div>
@@ -392,7 +445,7 @@ body {
       </div>
 
       <!-- 民俗学的考察 -->
-      <div class="article">
+      <div class="article" id="consideration">
         <div class="article-head">
           <div class="article-date">1999.10.19 更新</div>
           <div class="article-title">なぜ「記憶ごと消える」のか　——民俗学的考察——</div>
@@ -453,12 +506,11 @@ body {
       <div class="box">
         <div class="box-title">メニュー</div>
         <div class="box-body" style="padding:6px 10px;">
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/">▶ トップ</a>
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/oc/kamikakushi.html">▶ 神隠しの類型</a>
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/oc/cases.html">▶ 収集事例一覧</a>
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/oc/nashiki.html">▶ 梨の木と境界の話</a>
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/oc/zakki.html">▶ 民俗学的考察</a>
-          <a class="side-link" href="https://kasugaobaken-rgb.github.io/laughing-palm-tree/oc/bbs.html">▶ 目撃情報掲示板</a>
+          <a class="side-link" href="#">▶ トップ</a>
+          <a class="side-link" href="#types">▶ 神隠しの類型</a>
+          <a class="side-link" href="#cases">▶ 収集事例一覧</a>
+          <a class="side-link" href="#consideration">▶ 民俗学的考察</a>
+          <a class="side-link" href="#">▶ 目撃情報掲示板</a>
           <a class="side-link" href="#">▶ 参考文献</a>
           <a class="side-link" href="#">▶ リンク集</a>
           <a class="side-link" href="#">▶ 管理人について</a>
@@ -520,5 +572,11 @@ body {
   </div>
 
 </div>
+
+<a class="mogami-return" href="https://kasugaobaken-rgb.github.io/musical-octo-lamp/" target="_blank" rel="noopener">最上との通信に戻る</a>
+<div id="argToast" class="arg-toast"></div>
+<script src="./arg-kamikakushi-helper.js?v=20260509-1"></script>
+<script>recordVisitedSite('kamikakushi');</script>
+
 </body>
 </html>
